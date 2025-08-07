@@ -1,8 +1,8 @@
 import React from 'react'
 import { View,Text, ImageBackground, Image } from 'react-native'
 import { Tabs } from 'expo-router'
-import { images } from '@/React Native Movie App (assets)/constants/images'
-import { icons } from '@/React Native Movie App (assets)/constants/icons'
+import { images } from '@/constants/images'
+import { icons } from '@/constants/icons'
 
 interface TabIconProps {
   focused: boolean;
