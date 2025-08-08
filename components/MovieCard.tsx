@@ -17,7 +17,7 @@ const MovieCard = ({id, poster_path, title, vote_average, release_date} : Movie)
             resizeMode='cover'/>
 
             <Text className='text-sm font-bold text-white
-            mt-2'>{title}</Text>
+            mt-2 ' numberOfLines={1}>{title}</Text>
 
             <View className='flex-row items-center
             justify-start gap-x-1'>
