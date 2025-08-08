@@ -23,7 +23,8 @@ const MovieCard = ({id, poster_path, title, vote_average, release_date} : Movie)
             justify-start gap-x-1'>
                 <Image source={icons.star}
                 className='siez-4'/>
-                <Text>{Math.round(vote_average / 2)}</Text>
+                <Text className='
+                text-xs text-white font-bold uppercase' >{Math.round(vote_average / 2)}</Text>
             </View>
         </TouchableOpacity>
     </Link>
