@@ -1,6 +1,5 @@
 import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native'
-import React from 'react'
-import { useRouter } from 'expo-router'
+import React, { useState } from 'react'
 import useFetch from '@/services/useFetch'
 import { fetchMovies } from '@/services/api'
 import { images } from '@/constants/images'
@@ -8,22 +7,22 @@ import MovieCard from '@/components/MovieCard'
 import { icons } from '@/constants/icons'
 import SearchBar from '@/components/SearchBar'
 
-const search = () => {
-  const router = useRouter();
-
+const Search = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  
   const {
     data: movies, 
     loading: Loading, 
     error: Error} = useFetch(() => fetchMovies({
-      query: ''
-    }))
+      query: searchQuery
+    }), false) 
   return (
     <View className='flex-1 bg-primary'>
       <Image source={images.bg} className='flex-1 absolute w-full z-0 
       ' resizeMode='cover'/>
       <FlatList 
       data={movies}
-      renderItem={({item}) => <MovieCard {... item}/>}
+      renderItem={({item}) => <MovieCard {... item} />}
       keyExtractor={(item) => item.id.toString()} 
       
             numColumns={3}
@@ -32,7 +31,7 @@ const search = () => {
               gap: 16,
               marginVertical: 16
             }}
-            className="px-5"
+            
             contentContainerStyle={{paddingBottom: 100}}
             ListHeaderComponent={
               <>
@@ -53,11 +52,11 @@ const search = () => {
                   Error: {Error.message}
                 </Text>
               )}
-              {!Loading && !Error && "SEARCH TERM".trim() && movies?.length > 0 &&
+              {!Loading && !Error && searchQuery.trim() && Array.isArray(movies) && movies?.length > 0 &&
               (
                 <Text className='text-xl text-white font-bold'>
                   Search Results for{' '}
-                  <Text className='text-accent'>SEARCH TERM</Text>
+                  <Text className='text-accent'>{searchQuery}</Text>
                 </Text>
               )}
               </>
@@ -68,4 +67,4 @@ const search = () => {
   )
 }
 
-export default search
+export default Search
