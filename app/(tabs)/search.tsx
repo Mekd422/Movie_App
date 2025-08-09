@@ -53,6 +53,13 @@ const search = () => {
                   Error: {Error.message}
                 </Text>
               )}
+              {!Loading && !Error && "SEARCH TERM".trim() && movies?.length > 0 &&
+              (
+                <Text className='text-xl text-white font-bold'>
+                  Search Results for{' '}
+                  <Text className='text-accent'>SEARCH TERM</Text>
+                </Text>
+              )}
               </>
             }
             />
