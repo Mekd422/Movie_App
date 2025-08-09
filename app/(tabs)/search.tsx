@@ -21,15 +21,15 @@ const Search = () => {
     }), false) 
 
   useEffect(() => {
-    const func = async () => {
+    const timeOUtId = setTimeout(async () => {
       if(searchQuery.trim()){
         await loadMovies();
       }else{
         reset()
       }
-    }
+    }, 500)
 
-    func();
+    return () => clearTimeout(timeOUtId);
 
   }, [searchQuery])
   return (
